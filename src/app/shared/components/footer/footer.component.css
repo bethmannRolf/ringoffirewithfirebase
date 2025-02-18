@@ -1,0 +1,25 @@
+* {
+  margin: 0;
+  scroll-behavior: smooth;
+  box-sizing: border-box;
+}
+
+.whole-footer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 10vh;
+  background-color: #404040;
+}
+
+.whole-footer > a {
+  color: whitesmoke;
+  font-weight: bold;
+  font-size: 30px;
+  text-decoration: none;
+}
+
+F
+.whole-footer > a:hover {
+  scale: 120%;
+}
