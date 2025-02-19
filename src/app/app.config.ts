@@ -27,7 +27,7 @@ export const appConfig: ApplicationConfig = {
       apiKey: "AIzaSyC5W_Gcf79Xnre5k4O3NOZAkBHX_XG2gSQ",
       authDomain: "ring-of-fire-87f9f.firebaseapp.com",
       projectId: "ring-of-fire-87f9f",
-      storageBucket: "ring-of-fire-87f9f.appspot.com",  // storageBucket muss ein Punkt in der URL haben
+      storageBucket: "ring-of-fire-87f9f.appspot.com",  
       messagingSenderId: "50982636714",
       appId: "1:50982636714:web:24ffad7518af6db7e554d3",
     })),
