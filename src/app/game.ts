@@ -1,4 +1,5 @@
 export class Game {
+  id?: string
   players: string[] = [];
   stack: string[] = [];
   playedCards: string[] = [];
@@ -25,6 +26,9 @@ export class Game {
       this.playedCards = data.playedCards || [];
    
   }
+
+
+  
 
   
   public toJson() {
