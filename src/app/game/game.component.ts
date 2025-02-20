@@ -101,6 +101,9 @@ import { GameInfoComponent } from "../game-info/game-info.component";
 import { MatCardModule } from '@angular/material/card';
 import { Firestore, collectionData, collection, doc, onSnapshot } from '@angular/fire/firestore';
 import { Observable } from 'rxjs';
+import { addDoc } from '@angular/fire/firestore';
+import { ActivatedRoute } from '@angular/router';
+
 
 @Component({
   selector: 'app-game',
@@ -113,45 +116,40 @@ export class GameComponent implements OnInit {
   pickCardAnimation = false;
   game!: Game;
   currentCard: string = '';
-  // items$: Observable<any[]>;  
-  // readonly gameRef;
+  items$: Observable<any[]>;  
+  readonly gameRef;
 
-  // constructor(public dialog: MatDialog, private firestore: Firestore) {
-  //   this.gameRef = collection(this.firestore, 'games');
-  //   this.items$ = collectionData(this.gameRef, { idField: 'id' });
-  //       this.items$.subscribe(game => console.log('Firebase Daten:', game));
-
-  //   // this.items$.subscribe(data => console.log('Firebase Daten:', data));
-   
-  // }
-
-
-
-
-  constructor(public dialog: MatDialog){
-
+  constructor(private route:ActivatedRoute, public dialog: MatDialog, private firestore: Firestore) {
+    this.gameRef = collection(this.firestore, 'games');
+    this.items$ = collectionData(this.gameRef, { idField: 'id' });
+        this.items$.subscribe(game => console.log('Firebase Daten:', game));
   }
-
-
-
-// gameRef(){
-//   return
-// }
-
-
-ngOnDestroy(){
-
-}
 
 
 
   ngOnInit(): void {
     this.newGame();
+    this.route.params.subscribe((params)=>{
+      console.log(params)
+    })
   }
+
+
+
 
   newGame() {
     this.game = new Game();
+
+
+    addDoc(this.gameRef, this.game.toJson()).then((docRef) => {
+      console.log("Dokument erfolgreich hinzugefügt mit ID: ", docRef.id);
+    }).catch((error) => {
+      console.error("Fehler beim Hinzufügen des Dokuments: ", error);
+    });
   }
+
+
+
 
   takeCard() {
     if (!this.pickCardAnimation) {
@@ -178,7 +176,3 @@ ngOnDestroy(){
     });
   }
 }
-
-
-
-
